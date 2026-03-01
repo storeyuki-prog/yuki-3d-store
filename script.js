@@ -28,5 +28,9 @@ function addToCart(index) {
     cart.push(products[index]);
     document.getElementById("cart-count").innerText = cart.length;
 }
-
+function addToCart(index) {
+    cart.push(products[index]);
+    document.getElementById("cart-count").innerText = cart.length;
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 displayProducts();
