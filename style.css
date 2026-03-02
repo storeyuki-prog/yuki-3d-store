@@ -125,3 +125,20 @@ button:hover {
     color: white;
     text-shadow: 0 0 10px #ff4da6;
 }
+/* Logo styling */
+header .logo {
+    width: 120px;              /* size */
+    height: 120px;
+    border-radius: 50%;        /* makes it perfectly round */
+    border: 5px solid #ff4da6; /* soft pink border */
+    padding: 10px;             /* space inside border */
+    background: #fff;          /* white background for pop */
+    box-shadow: 0 5px 15px rgba(255, 77, 166, 0.5); /* soft shadow glow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Add hover effect */
+header .logo:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 25px rgba(255, 77, 166, 0.7);
+}
