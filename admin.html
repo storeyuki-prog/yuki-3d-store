@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YUKI Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>YUKI Admin Panel</h1>
+</header>
+
+<section class="admin-form">
+    <form id="productForm">
+        <label>Name:</label><input type="text" id="pName" required><br>
+        <label>Price:</label><input type="number" id="pPrice" required><br>
+        <label>Image URL:</label><input type="text" id="pImg" required><br>
+        <button type="submit">Add Product</button>
+    </form>
+</section>
+
+<script>
+let products = JSON.parse(localStorage.getItem('products')) || [];
+
+document.getElementById("productForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let name = document.getElementById("pName").value;
+    let price = parseInt(document.getElementById("pPrice").value);
+    let img = document.getElementById("pImg").value;
+
+    products.push({name, price, img});
+    localStorage.setItem('products', JSON.stringify(products));
+    alert("Product added!");
+});
+</script>
+
+</body>
+</html>
