@@ -4,7 +4,6 @@
     <title>YUKI - 3D Creations</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
@@ -13,12 +12,12 @@
 </header>
 
 <nav>
-    <a href="#">Home</a>
-    <a href="#">Gaming</a>
-    <a href="#">Decor</a>
-    <a href="#">Figures</a>
-    <a href="#">Custom</a>
-    <a href="#">Cart (<span id="cart-count">0</span>)</a>
+    <a href="index.html">Home</a>
+    <a href="#" onclick="filterCategory('Gaming')">Gaming</a>
+    <a href="#" onclick="filterCategory('Decor')">Decor</a>
+    <a href="#" onclick="filterCategory('Figures')">Figures</a>
+    <a href="#" onclick="filterCategory('Custom')">Custom</a>
+    <a href="checkout.html">Cart (<span id="cart-count">0</span>)</a>
 </nav>
 
 <section class="hero">
@@ -28,10 +27,6 @@
 
 <section class="products" id="product-list">
 </section>
-
-<footer>
-    <p>© 2026 YUKI - All Rights Reserved</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
