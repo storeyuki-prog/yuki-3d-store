@@ -1,0 +1,16 @@
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+const supabase = supabase.createClient('https://fxwrhyxmladreetvkzke.supabase.co','sb_publishable_OkfPYRplR4pVSIi3UyvBMg_fv-857Vo')
+
+async function signUp(){
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+
+await supabase.auth.signUp({ email, password })
+alert("Check your email to confirm")
+}
+</script>
+
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="signUp()">Sign Up</button>
