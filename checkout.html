@@ -5,44 +5,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <h1>YUKI - Checkout</h1>
-</header>
+<header><h1>YUKI - Checkout</h1></header>
 
 <section class="checkout-form">
-    <form id="orderForm">
-        <label>Name:</label>
-        <input type="text" id="name" required><br><br>
-
-        <label>Phone:</label>
-        <input type="text" id="phone" required><br><br>
-
-        <label>Address:</label>
-        <textarea id="address" required></textarea><br><br>
-
-        <button type="submit">Place Order via WhatsApp</button>
-    </form>
+<form id="orderForm">
+<label>Name:</label><input type="text" id="name" required><br>
+<label>Phone:</label><input type="text" id="phone" required><br>
+<label>Address:</label><textarea id="address" required></textarea><br>
+<button type="submit">Place Order via WhatsApp</button>
+</form>
 </section>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    document.getElementById("orderForm").addEventListener("submit", function(e){
-        e.preventDefault();
-        let name = document.getElementById("name").value;
-        let phone = document.getElementById("phone").value;
-        let address = document.getElementById("address").value;
+document.getElementById("orderForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
 
-        let message = `Hello YUKI!%0AOrder Details:%0A`;
-        cart.forEach((item, index) => {
-            message += `${index+1}. ${item.name} - ${item.price} DA%0A`;
-        });
-        message += `Name: ${name}%0APhone: ${phone}%0AAddress: ${address}%0ATotal: ${cart.reduce((a,b)=>a+b.price,0)} DA`;
+    let message = `Hello YUKI!%0AOrder Details:%0A`;
+    cart.forEach((item,index)=>{message+=`${index+1}. ${item.name} - ${item.price} DA%0A`});
+    message += `Name: ${name}%0APhone: ${phone}%0AAddress: ${address}%0ATotal: ${cart.reduce((a,b)=>a+b.price,0)} DA`;
 
-        window.open(`https://wa.me/213YOURNUMBER?text=${message}`, "_blank");
-    });
+    window.open(`https://wa.me/213YOURNUMBER?text=${message}`,"_blank");
+});
 </script>
-
 </body>
 </html>
