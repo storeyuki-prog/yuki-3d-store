@@ -1,6 +1,16 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-let products = JSON.parse(localStorage.getItem('products')) || [
+let products =async function loadProducts(){
+let { data, error } = await supabase
+.from('products')
+.select('*')
+
+if(data){
+displayProducts(data)
+}
+}
+
+loadProducts() || [
     {name:"3D Phone Stand",price:1200,img:"stand.jpg",category:"Custom"},
     {name:"Controller Holder",price:2500,img:"controller.jpg",category:"Gaming"},
     {name:"Dragon Figure",price:1800,img:"dragon.jpg",category:"Figures"},
