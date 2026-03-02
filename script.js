@@ -31,4 +31,9 @@ function filterCategory(cat) {
 }
 
 document.getElementById("cart-count").innerText = cart.length;
-displayProducts();
+
+function searchProduct(){
+    let value = document.getElementById("search").value.toLowerCase();
+    let filtered = products.filter(p => p.name.toLowerCase().includes(value));
+    displayProducts(filtered);
+}
