@@ -115,3 +115,13 @@ input, textarea {
 button:hover {
     box-shadow: 0 0 15px #ff4da6;
 }
+.socials a {
+    color: #ff4da6;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+.socials a:hover {
+    color: white;
+    text-shadow: 0 0 10px #ff4da6;
+}
