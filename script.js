@@ -1,8 +1,8 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [
-    {name: "3D Phone Stand", price: 1200, img:"images/stand.jpg", category:"Custom"},
-    {name: "Controller Holder", price: 2500, img:"images/controller.jpg", category:"Gaming"},
-    {name: "Dragon Figure", price: 1800, img:"images/dragon.jpg", category:"Figures"},
+    {name: "3D Phone Stand", price: 1200, img:"stand.jpg", category:"Custom"},
+    {name: "Controller Holder", price: 2500, img:"controller.jpg", category:"Gaming"},
+    {name: "Dragon Figure", price: 1800, img:"dragon.jpg", category:"Figures"},
 ];
 
 function displayProducts(filtered = products) {
