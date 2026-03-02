@@ -150,3 +150,10 @@ header .logo:hover {
 header .logo {
     animation: logoGlow 2s infinite;
 }
+.delivery {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg,#111,#1a1a1a);
+    border-top: 1px solid #ff4da6;
+    border-bottom: 1px solid #ff4da6;
+}
