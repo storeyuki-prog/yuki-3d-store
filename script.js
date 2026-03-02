@@ -31,6 +31,21 @@ function displayProducts(filtered = products){
         </div>`;
     });
 }
+await supabase.from('orders').insert([
+{
+customer_name: name,
+phone: phone,
+address: address,
+total: total,
+status: "Processing"
+}
+])
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+doc.text("YUKI INVOICE", 20, 20);
+doc.text("Customer: " + name, 20, 30);
+doc.text("Total: " + total + " DA", 20, 40);
+doc.save("invoice.pdf");
 
 function addToCart(index){
     cart.push(products[index]);
