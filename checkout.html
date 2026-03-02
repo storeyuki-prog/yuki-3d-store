@@ -32,5 +32,38 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
     window.open(`https://wa.me/213YOURNUMBER?text=${message}`,"_blank");
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+emailjs.init("HBhes7514m4xMcT06");
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let total = cart.reduce((a,b)=>a+b.price,0);
+
+    let orderDetails = cart.map(item => 
+        item.name + " - " + item.price + " DA"
+    ).join(", ");
+
+    emailjs.send("service_uj2nvv8", "template_h6nlm6i", {
+        customer_name: name,
+        customer_phone: phone,
+        customer_address: address,
+        order_details: orderDetails,
+        total_price: total
+    }).then(function(){
+        alert("Order sent successfully! Check your email.");
+        localStorage.removeItem("cart");
+    }, function(error){
+        alert("Error sending order.");
+    });
+});
+</script>
 </body>
 </html>
