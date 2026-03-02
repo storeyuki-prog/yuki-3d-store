@@ -33,11 +33,12 @@ function addToCart(index) {
     document.getElementById("cart-count").innerText = cart.length;
     localStorage.setItem('cart', JSON.stringify(cart));
 }
-displayProducts(container.innerHTML += `
+displayProducts();
+container.innerHTML += `
 <div class="card">
     <img src="${product.img}" style="width:100%; border-radius:15px;"><br>
     <h3>${product.name}</h3>
     <p>${product.price} DA</p>
     <button onclick="addToCart(${index})">Add to Cart</button>
 </div>
-`;);
+`;
