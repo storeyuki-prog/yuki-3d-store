@@ -142,3 +142,11 @@ header .logo:hover {
     transform: scale(1.1) rotate(5deg);
     box-shadow: 0 10px 25px rgba(255, 77, 166, 0.7);
 }
+@keyframes logoGlow {
+    0%, 100% { box-shadow: 0 5px 15px rgba(255,77,166,0.5); }
+    50% { box-shadow: 0 10px 25px rgba(255,77,166,0.9); }
+}
+
+header .logo {
+    animation: logoGlow 2s infinite;
+}
