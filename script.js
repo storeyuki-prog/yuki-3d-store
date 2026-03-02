@@ -1,67 +1,69 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let allProducts = [];
 
-let products =async function loadProducts(){
-let { data, error } = await supabase
-.from('products')
-.select('*')
+document.getElementById("cart-count").innerText = cart.length;
 
-if(data){
-displayProducts(data)
+async function loadProducts() {
+
+    let { data, error } = await supabaseClient
+        .from("products")
+        .select("*");
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    allProducts = data;
+    displayProducts(data);
 }
-}
 
-loadProducts() || [
-    {name:"3D Phone Stand",price:1200,img:"stand.jpg",category:"Custom"},
-    {name:"Controller Holder",price:2500,img:"controller.jpg",category:"Gaming"},
-    {name:"Dragon Figure",price:1800,img:"dragon.jpg",category:"Figures"},
-    {name:"Wall Decor Art",price:3000,img:"decor.jpg",category:"Decor"}
-];
-
-function displayProducts(filtered = products){
+function displayProducts(products) {
     let container = document.getElementById("product-list");
     container.innerHTML = "";
 
-    filtered.forEach((product,index)=>{
+    products.forEach((product, index) => {
         container.innerHTML += `
         <div class="card">
-            <img src="${product.img}" style="width:100%;border-radius:15px;">
+            <img src="${product.image}">
             <h3>${product.name}</h3>
             <p>${product.price} DA</p>
             <button onclick="addToCart(${index})">Add to Cart</button>
-        </div>`;
+        </div>
+        `;
     });
 }
-await supabase.from('orders').insert([
-{
-customer_name: name,
-phone: phone,
-address: address,
-total: total,
-status: "Processing"
-}
-])
-const { jsPDF } = window.jspdf;
-let doc = new jsPDF();
-doc.text("YUKI INVOICE", 20, 20);
-doc.text("Customer: " + name, 20, 30);
-doc.text("Total: " + total + " DA", 20, 40);
-doc.save("invoice.pdf");
 
-function addToCart(index){
-    cart.push(products[index]);
-    localStorage.setItem("cart",JSON.stringify(cart));
+function addToCart(index) {
+    cart.push(allProducts[index]);
+    localStorage.setItem("cart", JSON.stringify(cart));
     document.getElementById("cart-count").innerText = cart.length;
 }
 
-function filterCategory(cat){
-    displayProducts(products.filter(p=>p.category===cat));
+function filterCategory() {
+    let selected = document.getElementById("categoryFilter").value;
+
+    if (selected === "all") {
+        displayProducts(allProducts);
+    } else {
+        let filtered = allProducts.filter(p => p.category === selected);
+        displayProducts(filtered);
+    }
 }
 
-function searchProduct(){
-    let value = document.getElementById("search").value.toLowerCase();
-    let filtered = products.filter(p=>p.name.toLowerCase().includes(value));
-    displayProducts(filtered);
+function sendOrder() {
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+
+    let message = "Hello YUKI,%0D%0A%0D%0AI want to order:%0D%0A";
+
+    cart.forEach(item => {
+        message += "- " + item.name + " (" + item.price + " DA)%0D%0A";
+    });
+
+    window.location.href = `mailto:storeyuki2@gmail.com?subject=YUKI Order&body=${message}`;
 }
 
-document.getElementById("cart-count").innerText = cart.length;
-displayProducts();
+loadProducts();
